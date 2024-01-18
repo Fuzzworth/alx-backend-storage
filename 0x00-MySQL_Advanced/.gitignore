@@ -3,3 +3,5 @@
 # Ignore compiled files or local configuration specific to your development environment
 .venv/
 *.pyc
+ab2979f058de215f0f2ae5b052739e76d3c02ac5.zip
+metal_bands.sql
