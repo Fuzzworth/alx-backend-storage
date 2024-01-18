@@ -6,7 +6,8 @@ BEGIN
     DECLARE total_weight FLOAT;
 
     -- Calculate the weighted average
-    SELECT SUM(score * weight) INTO total_score, SUM(weight) INTO total_weight
+    SELECT COALESCE(SUM(score * weight), 0) INTO total_score,
+           COALESCE(SUM(weight), 0) INTO total_weight
     FROM corrections c
     JOIN projects p ON c.project_id = p.id
     WHERE c.user_id = user_id;
