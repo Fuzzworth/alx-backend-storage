@@ -1,7 +1,7 @@
 -- Docs
 SELECT
     band_name,
-    YEAR(COALESCE(split, 2022)) - formed AS lifespan
+    COALESCE(split, 2022) - formed AS lifespan
 FROM
     metal_bands
 WHERE
