@@ -27,7 +27,7 @@ class Cache:
         self._redis.set(random_key, data)
         return random_key
 
-    def get(self, key: str, fn: Optional[Callable] = None) -> Any:
+    def get(self, key: str, fn: Optional[Callable] = None) -> Union[bytes, str, memoryview]:
         '''
         Function Docs
         '''
@@ -36,3 +36,14 @@ class Cache:
             return fn(value)
 
         return value
+    def get_str(self, key: str) -> str:
+        '''
+        Function Docs
+        '''
+        return self.get(key, fn=lambda x: x.decode('utf-8'))
+
+    def get_int(self, key: str) -> int:
+        '''
+        Function Docs
+        '''
+        return self.get(key, fn=int)
