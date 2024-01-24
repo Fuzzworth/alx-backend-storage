@@ -18,7 +18,7 @@ def call_history(method: Callable) -> Callable:
         self._redis.rpush(inputs_key, input_str)
 
         # Execute the original function to get the output
-        output = method(*args, **kwargs)
+        output = method(self, *args, **kwargs)
 
         # Store the output in the outputs list
         self._redis.rpush(outputs_key, output)
