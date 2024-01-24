@@ -14,5 +14,5 @@ class Cache:
         '''
         Function Docs
         '''
-        _redis = redis.Redis()
+        self._redis = redis.Redis()
         self._redis.flushdb()
