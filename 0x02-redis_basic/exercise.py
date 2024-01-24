@@ -23,5 +23,5 @@ class Cache:
         Function Docs
         '''
         random_key = str(uuid4())
-        self._redis.set(random_key, str(data))
+        self._redis.set(random_key, data)
         return random_key
