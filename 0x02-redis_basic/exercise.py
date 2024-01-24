@@ -8,10 +8,6 @@ from typing import Union, Optional, Callable, Any
 
 
 def call_history(method: Callable) -> Callable:
-    '''
-    Function Docs
-    '''
-
     def wrapper(*args, **kwargs):
         # Create keys for inputs and outputs
         inputs_key = f"{method.__qualname__}:inputs"
