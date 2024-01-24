@@ -28,7 +28,7 @@ class Cache:
         return random_key
 
     def get(self, key: str, fn: Optional[Callable] = None) -> \
-    Union[bytes, str, memoryview]:
+        Union[bytes, str, memoryview]:
         '''
         Function Docs
         '''
