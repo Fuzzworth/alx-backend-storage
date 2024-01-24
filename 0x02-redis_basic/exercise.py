@@ -6,6 +6,7 @@ import redis
 from uuid import uuid4
 from typing import Union, Optional, Callable
 
+
 def count_calls(method: Callable) -> Callable:
     """
     Decorator to count the number of times a method is called.
@@ -19,6 +20,7 @@ def count_calls(method: Callable) -> Callable:
         self._redis.incr(key)
         return method(self, *args, **kwargs)
     return wrapper
+
 
 def call_history(method: Callable) -> Callable:
     """
@@ -39,6 +41,7 @@ def call_history(method: Callable) -> Callable:
         return data
 
     return wrapper
+
 
 class Cache:
     """
@@ -68,13 +71,15 @@ class Cache:
         self._redis.set(random_key, data)
         return random_key
 
-    def get(self, key: str, fn: Optional[Callable] = None) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Optional[Callable]
+            = None) -> Union[str, bytes, int, float]:
         """
         Get data from the cache.
 
         Args:
             key (str): The key associated with the data.
-            fn (Optional[Callable]): A callable function to transform the retrieved data.
+            fn (Optional[Callable]): A callable function to transform the
+            retrieved data.
 
         Returns:
             Union[str, bytes, int, float]: The retrieved data.
@@ -113,6 +118,7 @@ class Cache:
             return int(value.decode('utf-8')) if value else 0
         except ValueError:
             return 0
+
 
 def replay(method: Callable) -> None:
     """
