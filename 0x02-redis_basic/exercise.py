@@ -8,20 +8,20 @@ from typing import Union, Optional, Callable, Any
 
 
 def call_history(method: Callable) -> Callable:
-    def wrapper(*args, **kwargs):
+    def wrapper(self, *args, **kwargs):
         # Create keys for inputs and outputs
         inputs_key = f"{method.__qualname__}:inputs"
         outputs_key = f"{method.__qualname__}:outputs"
 
         # Append input arguments to the inputs list
         input_str = str(args)
-        method._redis.rpush(inputs_key, input_str)
+        self._redis.rpush(inputs_key, input_str)
 
         # Execute the original function to get the output
         output = method(*args, **kwargs)
 
         # Store the output in the outputs list
-        method._redis.rpush(outputs_key, output)
+        self._redis.rpush(outputs_key, output)
 
         return output
 
